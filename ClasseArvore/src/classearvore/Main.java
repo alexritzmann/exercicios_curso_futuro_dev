@@ -13,7 +13,7 @@ public class Main
         System.out.println("Digite o nome da arvore:");
         String nome = entrada.nextLine().trim();
 
-        int tipoNumerico =0;
+        int tipoNumerico = 0;
         boolean validaEntrada = false;
         while (!validaEntrada)
         {
