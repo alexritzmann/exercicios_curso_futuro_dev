@@ -14,8 +14,6 @@ public class FrequenciaCardiaca
 
     public int getDiaNascimento() {return diaNascimento;}
 
-    public void setDiaNascimento(int diaNascimento) {this.diaNascimento = diaNascimento;}
-
     public int getMesNascimento() {return mesNascimento;}
 
     public void setMesNascimento(int mesNascimento) {this.mesNascimento = mesNascimento;}

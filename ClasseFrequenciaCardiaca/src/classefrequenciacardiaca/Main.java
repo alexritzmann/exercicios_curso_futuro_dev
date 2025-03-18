@@ -28,14 +28,7 @@ public class Main
         System.out.println("Qual o seu sobrenome?");
         String sobrenome = entrada.nextLine();
 
-
         FrequenciaCardiaca usuario = new FrequenciaCardiaca(nome, sobrenome, dia,mes,ano);
-        usuario.setNome(nome);
-        usuario.setSobrenome(sobrenome);
-        usuario.setAnoNascimento(ano);
-        usuario.setMesNascimento(mes);
-        usuario.setDiaNascimento(dia);
-
 
         System.out.println("Olá " + usuario.getNome() + " " + usuario.getSobrenome());
         System.out.println("Sua data de nascimento é " +usuario.getDiaNascimento()+"/"+usuario.getMesNascimento()+"/"+usuario.getAnoNascimento());
