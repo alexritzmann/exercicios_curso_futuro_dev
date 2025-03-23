@@ -2,21 +2,35 @@ package mapeamentoareasverdesjoinville;
 
 public class Localizacao
 {
-    private double latitude;
-    private double longitude;
-    private int idAreaVerde;
+    private final int idAreaVerde;
+    private final double latitude;
+    private final int latitudeNorteSul;
+    private final double longitude;
+    private final int longitudeNorteSul;
+    private int idLocalizacao;
 
-    public double getLatitude() {return latitude;}
-    public void setLatitude(double latitude) {this.latitude = latitude;}
-    public double getLongitude() {return longitude;}
-    public void setLongitude(double longitude) {this.longitude = longitude;}
+
     public int getIdAreaVerde() {return idAreaVerde;}
-    public void setIdAreaVerde(int idAreaVerde) {this.idAreaVerde = idAreaVerde;}
+    public void setIdLocalizacao(int idLocalizacao) {this.idLocalizacao = idLocalizacao;}
 
- /*
-    //Deve possuir método que represente textualmente seus dados (toString).
+    public Localizacao (int idAreaVerde, double latitude, int latitudeNorteSul, double longitude, int longitudeNorteSul)
+    {
+        this.idAreaVerde = idAreaVerde;
+        this.latitude = latitude;
+        this.latitudeNorteSul = latitudeNorteSul;
+        this.longitude = longitude;
+        this.longitudeNorteSul = longitudeNorteSul;
+    }
 
-*/
+    @Override
+    public String toString()
+    {
+        String direcaoLatitude = (latitudeNorteSul == 1) ? "(Norte)" : "(Sul)";
+        String direcaoLongitude = (longitudeNorteSul == 1) ? "(Leste)" : "(Oeste)";
+
+        return  "Latitude: " + latitude + "° " + direcaoLatitude + "\n" +
+                "Longitude: " + longitude + "° " + direcaoLongitude+ "\n";
+    }
 
 
 

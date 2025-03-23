@@ -1,43 +1,66 @@
 package mapeamentoareasverdesjoinville;
 
+import Repositorios.AvaliacaoRepository;
+import java.util.ArrayList;
+
 public class AreaVerde
 {
     private int idAreaVerde;
-    private String nomeAreaVerde;
-    private double latitudeAreaVerde;
-    private double longitudeAreaVerde;
-    private String tipoVegetacaoAreaVerde;
-    private double horarioAberturaAreaVerde;
-    private double horarioFechamentoAreaVerde;
-    private String atividadesAreaVerde;
-    private int avaliacoesAreaVerde;
+    private final String nomeAreaVerde;
+    private final String tipoVegetacaoAreaVerde;
+    private final boolean vinteEQuatroHoras;
+    private final String horarioAberturaAreaVerde;
+    private final String horarioFechamentoAreaVerde;
+    private final ArrayList<String> atividadesAreaVerde;
 
     public int getIdAreaVerde() {return idAreaVerde;}
     public void setIdAreaVerde(int idAreaVerde) {this.idAreaVerde = idAreaVerde;}
     public String getNomeAreaVerde() {return nomeAreaVerde;}
-    public void setNomeAreaVerde(String nomeAreaVerde) {this.nomeAreaVerde = nomeAreaVerde;}
-    public double getLatitudeAreaVerde() {return latitudeAreaVerde;}
-    public void setLatitudeAreaVerde(double latitudeAreaVerde) {this.latitudeAreaVerde = latitudeAreaVerde;}
-    public double getLongitudeAreaVerde() {return longitudeAreaVerde;}
-    public void setLongitudeAreaVerde(double longitudeAreaVerde) {this.longitudeAreaVerde = longitudeAreaVerde;}
     public String getTipoVegetacaoAreaVerde() {return tipoVegetacaoAreaVerde;}
-    public void setTipoVegetacaoAreaVerde(String tipoVegetacaoAreaVerde) {this.tipoVegetacaoAreaVerde = tipoVegetacaoAreaVerde;}
-    public double getHorarioAberturaAreaVerde() {return horarioAberturaAreaVerde;}
-    public void setHorarioAberturaAreaVerde(double horarioAberturaAreaVerde) {this.horarioAberturaAreaVerde = horarioAberturaAreaVerde;}
-    public double getHorarioFechamentoAreaVerde() {return horarioFechamentoAreaVerde;}
-    public void setHorarioFechamentoAreaVerde(double horarioFechamentoAreaVerde) {this.horarioFechamentoAreaVerde = horarioFechamentoAreaVerde;}
-    public String getAtividadesAreaVerde() {return atividadesAreaVerde;}
-    public void setAtividadesAreaVerde(String atividadesAreaVerde) {this.atividadesAreaVerde = atividadesAreaVerde;}
-    public int getAvaliacoesAreaVerde() {return avaliacoesAreaVerde;}
-    public void setAvaliacoesAreaVerde(int avaliacoesAreaVerde) {this.avaliacoesAreaVerde = avaliacoesAreaVerde;}
 
 
-    public void calculaMeidaAvaliacoes()
+
+
+    public AreaVerde(String nomeAreaVerde, String tipoVegetacaoAreaVerde, boolean vinteEQuatroHoras, String horarioAberturaAreaVerde, String horarioFechamentoAreaVerde, ArrayList<String> atividadesAreaVerde)
     {
-
+        this.nomeAreaVerde = nomeAreaVerde;
+        this.tipoVegetacaoAreaVerde = tipoVegetacaoAreaVerde;
+        this.vinteEQuatroHoras = vinteEQuatroHoras;
+        this.horarioAberturaAreaVerde = horarioAberturaAreaVerde;
+        this.horarioFechamentoAreaVerde = horarioFechamentoAreaVerde;
+        this.atividadesAreaVerde = atividadesAreaVerde;
     }
 
+    public double calculaMediaAvaliacoes(AvaliacaoRepository avaliacaoRepository)
+    {
+        return avaliacaoRepository.calcularMediaGeral(this.idAreaVerde);
+    }
 
-    // Também deve possuir métodos que retornem textualmente (String) os dados de Listagem e de Detalhe
+    @Override
+    public String toString()
+    {
+        return nomeAreaVerde;
+    }
+
+    public String toStringDetalhado()
+    {
+        String result = "ID da Área Verde: " + idAreaVerde + "\n" +
+                        "Nome da Área Verde: " + nomeAreaVerde + "\n" +
+                        "Tipo de Vegetação: " + tipoVegetacaoAreaVerde + "\n" +
+                        "Aberto 24 horas: " + (vinteEQuatroHoras ? "Sim" : "Não") + "\n";
+
+        if (!vinteEQuatroHoras) {
+            result +=   "Horário de Abertura: " + horarioAberturaAreaVerde + "\n" +
+                        "Horário de Fechamento: " + horarioFechamentoAreaVerde + "\n";
+        }
+
+        result +=       "Atividades Disponíveis: \n";
+        for (String atividade : atividadesAreaVerde) {
+            result +=   " - " + atividade;
+        }
+
+        return result;
+    }
+
 
 }
