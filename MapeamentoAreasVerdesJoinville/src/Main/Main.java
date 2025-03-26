@@ -1,13 +1,11 @@
 package Main;
 
-
 import Repositorios.AreaVerdeRepository;
 import Repositorios.AvaliacaoRepository;
 import Repositorios.LocalizacaoRepository;
-import mapeamentoareasverdesjoinville.AreaVerde;
-import mapeamentoareasverdesjoinville.Avaliacao;
-import mapeamentoareasverdesjoinville.Localizacao;
-
+import models.AreaVerde;
+import models.Avaliacao;
+import models.Localizacao;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,10 +16,8 @@ public class Main
         AreaVerdeRepository areaVerdeRepository = new AreaVerdeRepository();
         LocalizacaoRepository localizacaoRepository = new LocalizacaoRepository();
         AvaliacaoRepository avaliacaoRepository = new AvaliacaoRepository();
-
-
-
         Scanner entrada = new Scanner(System.in);
+
         int operacao;
 
         bemVindo();
@@ -121,7 +117,6 @@ public class Main
             }
         }
 
-
         System.out.print("Qual principal tipo de vegetação (árvores, arbustos, grama/gramado): ");
         String tipoVegetacao = testaEntradaString(entrada);
 
@@ -151,6 +146,7 @@ public class Main
                 System.out.print("Tente novamente!\n");
             }
         }
+
         ArrayList<String> atividades = new ArrayList<>();
         System.out.print("Quais atividades são oferecidas? \n");
         System.out.print("Exemplos: caminhada, ciclismo, futebol, vôlei, quadras de areia, piquenique, parquinho infantil, pedalinho, etc \n");
@@ -175,10 +171,7 @@ public class Main
         Localizacao novaLocalizacao = new Localizacao(novaAV.getIdAreaVerde(), latitude, latitudeNorteSul, longitude, longitudeLesteOeste);
         localizacaoRepository.salvarLocalizacao(novaLocalizacao);
 
-
         System.out.println("Área Verde cadastrada com sucesso!\n");
-
-
     }
 
     public static void listar(AreaVerdeRepository areaVerdeRepository, AvaliacaoRepository avaliacaoRepository)
@@ -307,8 +300,6 @@ public class Main
         avaliacaoRepository.salvarAvaliacoes(novaAvaliacao);
 
         System.out.println("Avaliação registrada com sucesso!\n");
-
-
     }
 
     public static void detalhar(Scanner entrada, AreaVerdeRepository areaVerdeRepository, LocalizacaoRepository localizacaoRepository, AvaliacaoRepository avaliacaoRepository)
@@ -356,6 +347,7 @@ public class Main
                     }
                     double notaGeral = avaliacaoRepository.calcularMediaGeral(escolha);
                     System.out.println("Nota geral da Área Verde: " + notaGeral + "\n\n");
+                    break;
 
                 }else
                 {
@@ -366,12 +358,6 @@ public class Main
                 System.out.print("ID Inválido. Tente novamente!\n");
             }
         }
-
-
-
-
-
-
     }
 
     public static void sair()

@@ -1,15 +1,10 @@
 package Repositorios;
 
-
-import mapeamentoareasverdesjoinville.AreaVerde;
-
+import models.AreaVerde;
 import java.util.ArrayList;
-
 
 public class AreaVerdeRepository
 {
-    //AreaVerdeRepository, possuindo um atributo estático “List<AreaVerde> AREAS_VERDES”;
-
     private static final ArrayList<AreaVerde> AREAS_VERDES = new ArrayList<>();
 
     public void salvarAreaVerde (AreaVerde novaAreaVerde)
@@ -27,11 +22,10 @@ public class AreaVerdeRepository
         {
             for (AreaVerde av : AREAS_VERDES)
             {
-                double media = av.calculaMediaAvaliacoes(avaliacaoRepository);
+                double media = av.calculaMediaAvaliacoesDeUmaID(avaliacaoRepository);
                 System.out.printf("ID: %d | Nome: %s | Tipo de Vegetação: %s | Média das avaliações: %.2f%n", av.getIdAreaVerde(), av.getNomeAreaVerde(), av.getTipoVegetacaoAreaVerde(), media);
             }
         }
-
     }
 
     public AreaVerde localizarAreaVerde(int id)
@@ -50,6 +44,4 @@ public class AreaVerdeRepository
     {
         return AREAS_VERDES.size();
     }
-
-
 }

@@ -1,16 +1,10 @@
 package Repositorios;
 
-import mapeamentoareasverdesjoinville.Localizacao;
-
+import models.Localizacao;
 import java.util.ArrayList;
 
 public class LocalizacaoRepository
 {
-
-
-    //LocalizacaoRepository, possuindo um atributo estático “List<Localizacao> LOCALIZACOES
-
-
     private static final ArrayList<Localizacao> LOCALIZACOES = new ArrayList<>();
 
     public void salvarLocalizacao(Localizacao novaLocalizacao)
@@ -30,6 +24,4 @@ public class LocalizacaoRepository
         }
         return null;
     }
-
-
 }

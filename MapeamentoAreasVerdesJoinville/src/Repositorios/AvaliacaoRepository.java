@@ -1,13 +1,11 @@
 package Repositorios;
 
-import mapeamentoareasverdesjoinville.Avaliacao;
+import models.Avaliacao;
 import java.util.ArrayList;
 
 public class AvaliacaoRepository
 {
-
     private static final ArrayList<Avaliacao> AVALIACOES = new ArrayList<>();
-
 
     public void salvarAvaliacoes(Avaliacao novaAvaliacao)
     {
@@ -15,7 +13,8 @@ public class AvaliacaoRepository
         AVALIACOES.add(novaAvaliacao);
     }
 
-    public double calcularMediaGeral(int idAreaVerde) {
+    public double calcularMediaGeral(int idAreaVerde)
+    {
         double soma = 0;
         int contador = 0;
 
@@ -23,14 +22,15 @@ public class AvaliacaoRepository
         {
             if (avaliacao.getIdAreaVerde() == idAreaVerde)
             {
-                soma += avaliacao.calculaMediaGeral();
+                soma += avaliacao.calculaMediaAvaliacao();
                 contador++;
             }
         }
         return contador > 0 ? soma / contador : 0;
     }
 
-    public ArrayList<Avaliacao> obterAvaliacoesPorAreaVerde(int idAreaVerde) {
+    public ArrayList<Avaliacao> obterAvaliacoesPorAreaVerde(int idAreaVerde)
+    {
         ArrayList<Avaliacao> avaliacoesDaArea = new ArrayList<>();
 
         for (Avaliacao avaliacao : AVALIACOES) {
@@ -38,11 +38,6 @@ public class AvaliacaoRepository
                 avaliacoesDaArea.add(avaliacao);
             }
         }
-
         return avaliacoesDaArea;
     }
-
-
-
-
 }
