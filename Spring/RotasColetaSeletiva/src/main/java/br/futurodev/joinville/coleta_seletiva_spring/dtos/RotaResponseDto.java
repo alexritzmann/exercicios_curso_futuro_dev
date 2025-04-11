@@ -4,6 +4,6 @@ public record RotaResponseDto(
         Long idRota,
         String descricaoRota,
         String areaAbrangenciaRota,
-        double enficienciaRota
-) {
-}
+        double eficienciaRota
+) {}
+

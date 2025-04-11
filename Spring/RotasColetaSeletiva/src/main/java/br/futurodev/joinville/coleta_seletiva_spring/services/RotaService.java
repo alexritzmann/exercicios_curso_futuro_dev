@@ -11,27 +11,63 @@ import java.util.List;
 @Service
 public class RotaService
 {
-    public RotaResponseDto cadastraRotas(RotaRequestDto dto)
+    public RotaResponseDto cadastrarRota(RotaRequestDto dto)
     {
         Rota rota = new Rota();
         rota.setDescricaoRota(dto.descricaoRota());
         rota.setAreaAbrangenciaRota(dto.areaAbrangenciaRota());
-        rota.setEnficienciaRota(dto.enficienciaRota());
+        rota.setEnficienciaRota(dto.eficienciaRota());
 
-        rota = Rota.addRotas(rota);
+        Rota.addRotas(rota);
 
-        return new RotaResponseDto(rota.getIdRota(), rota.getDescricaoRota(), rota.getAreaAbrangenciaRota(), rota.getEnficienciaRota());
+        return toDto(rota);
     }
 
-    public List<RotaResponseDto> consultaRotas()
+    public List<RotaResponseDto> listarRotas()
     {
-        List<RotaResponseDto> response = new ArrayList<>();
+        List<Rota> rotas = Rota.getRotas();
+        List<RotaResponseDto> responseDtos = new ArrayList<>();
+
+        for (Rota rota : rotas)
+        {
+            responseDtos.add(toDto(rota));
+        }
+        return responseDtos;
+    }
+
+    public RotaResponseDto buscarPorId(Long id)
+    {
+        Rota rota = findById(id);
+        return rota != null ? toDto(rota) : null;
+    }
+
+    private Rota findById(Long id)
+    {
         for (Rota rota : Rota.getRotas())
         {
-            response.add(new RotaResponseDto(rota.getIdRota(), rota.getDescricaoRota(), rota.getAreaAbrangenciaRota(), rota.getEnficienciaRota()));
+            if (rota.getIdRota().equals(id))
+            {
+                return rota;
+            }
         }
-        return response;
-
+        return null;
     }
 
+    public Rota buscarRotaPorId(Long id)
+    {
+        for (Rota rota : Rota.getRotas())
+        {
+            if (rota.getIdRota().equals(id))
+            {
+                return rota;
+            }
+        }
+        return null;
+    }
+
+
+    private RotaResponseDto toDto(Rota rota)
+    {
+        return new RotaResponseDto(rota.getIdRota(), rota.getDescricaoRota(), rota.getAreaAbrangenciaRota(), rota.getEnficienciaRota());
+    }
 }

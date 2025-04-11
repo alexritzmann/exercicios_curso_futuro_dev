@@ -23,13 +23,14 @@ public class Coletor
         this.idColetor = sequenciaColetor++;
     }
 
-    public static Coletor addColetor(Coletor coletor) {
+    public static Coletor addColetor(Coletor coletor)
+    {
         coletores.add(coletor);
         return coletor;
     }
 
-    public static List<Coletor> getColetor() {
-        return coletores;
+    public static List<Coletor> getColetores() {
+        return new ArrayList<>(coletores);
     }
 
 }

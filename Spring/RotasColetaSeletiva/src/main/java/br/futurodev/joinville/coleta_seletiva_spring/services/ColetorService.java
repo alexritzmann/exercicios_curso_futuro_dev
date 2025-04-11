@@ -9,28 +9,71 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ColetorService
-{
-    public ColetorResponseDto cadastraColetores(ColetorRequestDto dto)
+public class ColetorService {
+
+    public ColetorResponseDto cadastrarColetor(ColetorRequestDto dto)
     {
         Coletor coletor = new Coletor();
         coletor.setNomeColetor(dto.nomeColetor());
         coletor.setDescricaoColetor(dto.descricaoColetor());
 
-        coletor = Coletor.addColetor(coletor);
+        Coletor.addColetor(coletor);
 
+        return toDto(coletor);
+    }
+
+    public List<ColetorResponseDto> listarColetores()
+    {
+        List<Coletor> coletores = Coletor.getColetores();
+        List<ColetorResponseDto> dtos = new ArrayList<>();
+
+        for (Coletor coletor : coletores)
+        {
+            dtos.add(new ColetorResponseDto(coletor.getIdColetor(), coletor.getNomeColetor(), coletor.getDescricaoColetor()));
+        }
+        return dtos;
+    }
+
+    public ColetorResponseDto buscarPorId(Long id)
+    {
+        for (Coletor coletor : Coletor.getColetores())
+        {
+            if (coletor.getIdColetor().equals(id))
+            {
+                return toDto(coletor);
+            }
+        }
+        return null;
+    }
+
+    public Coletor buscarColetorPorId(Long id)
+    {
+        List<Coletor> coletores = Coletor.getColetores();
+        for (Coletor coletor : coletores)
+        {
+            if (coletor.getIdColetor().equals(id))
+            {
+                return coletor;
+            }
+        }
+        return null;
+    }
+
+    private Coletor findById(Long id)
+    {
+        for (Coletor coletor : Coletor.getColetores())
+        {
+            if (coletor.getIdColetor().equals(id))
+            {
+                return coletor;
+            }
+        }
+        return null;
+    }
+
+    private ColetorResponseDto toDto(Coletor coletor)
+    {
         return new ColetorResponseDto(coletor.getIdColetor(), coletor.getNomeColetor(), coletor.getDescricaoColetor());
     }
-
-    public List<ColetorResponseDto> consultaColetores()
-    {
-        List<ColetorResponseDto> response = new ArrayList<>();
-        for (Coletor coletor : Coletor.getColetor())
-        {
-            response.add(new ColetorResponseDto(coletor.getIdColetor(), coletor.getNomeColetor(), coletor.getDescricaoColetor()));
-        }
-        return response;
-
-    }
-
 }
+

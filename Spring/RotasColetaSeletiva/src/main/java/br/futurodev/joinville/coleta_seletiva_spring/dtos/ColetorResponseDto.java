@@ -4,5 +4,4 @@ public record ColetorResponseDto(
         Long idColetor,
         String nomeColetor,
         String descricaoColetor
-) {
-}
+) {}

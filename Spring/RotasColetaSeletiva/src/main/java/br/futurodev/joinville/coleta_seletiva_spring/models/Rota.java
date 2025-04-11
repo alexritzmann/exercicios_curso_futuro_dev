@@ -32,7 +32,7 @@ public class Rota
     }
 
     public static List<Rota> getRotas() {
-        return rotas;
+        return new ArrayList<>(rotas);
     }
 
 }

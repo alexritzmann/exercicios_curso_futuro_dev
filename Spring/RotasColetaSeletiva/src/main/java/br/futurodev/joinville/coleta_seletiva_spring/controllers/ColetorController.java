@@ -17,15 +17,22 @@ public class ColetorController
     private ColetorService coletorService;
 
     @GetMapping
-    public List<ColetorResponseDto> get()
+    public List<ColetorResponseDto> listarColetores()
     {
-        return coletorService.consultaColetores();
+        return coletorService.listarColetores();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ColetorResponseDto post(@RequestBody ColetorRequestDto dto)
+    public ColetorResponseDto cadastrarColetor(@RequestBody ColetorRequestDto dto)
     {
-        return coletorService.cadastraColetores(dto);
+        return coletorService.cadastrarColetor(dto);
+    }
+
+    @GetMapping("/{id}")
+    public ColetorResponseDto buscarPorId(@PathVariable Long id)
+    {
+        return coletorService.buscarPorId(id);
     }
 }
+

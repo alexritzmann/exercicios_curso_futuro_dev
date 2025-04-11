@@ -17,16 +17,21 @@ public class RotaController
     private RotaService rotaService;
 
     @GetMapping
-    public List<RotaResponseDto> get()
+    public List<RotaResponseDto> listarRotas()
     {
-        return rotaService.consultaRotas();
+        return rotaService.listarRotas();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public RotaResponseDto post(@RequestBody RotaRequestDto dto)
+    public RotaResponseDto cadastrarRota(@RequestBody RotaRequestDto dto)
     {
-        return rotaService.cadastraRotas(dto);
+        return rotaService.cadastrarRota(dto);
     }
 
+    @GetMapping("/{id}")
+    public RotaResponseDto buscarPorId(@PathVariable Long id)
+    {
+        return rotaService.buscarPorId(id);
+    }
 }
