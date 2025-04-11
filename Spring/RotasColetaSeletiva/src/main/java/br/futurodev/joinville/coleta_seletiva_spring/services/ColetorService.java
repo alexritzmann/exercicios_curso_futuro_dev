@@ -2,10 +2,7 @@ package br.futurodev.joinville.coleta_seletiva_spring.services;
 
 import br.futurodev.joinville.coleta_seletiva_spring.dtos.ColetorRequestDto;
 import br.futurodev.joinville.coleta_seletiva_spring.dtos.ColetorResponseDto;
-import br.futurodev.joinville.coleta_seletiva_spring.dtos.RotaRequestDto;
-import br.futurodev.joinville.coleta_seletiva_spring.dtos.RotaResponseDto;
 import br.futurodev.joinville.coleta_seletiva_spring.models.Coletor;
-import br.futurodev.joinville.coleta_seletiva_spring.models.Rota;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
