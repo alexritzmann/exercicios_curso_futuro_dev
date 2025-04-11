@@ -1,7 +1,11 @@
 package br.futurodev.joinville.coleta_seletiva_spring.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Coletor
 {
+    private static final List<Coletor> coletores = new ArrayList<>();
     private static Long sequenciaColetor = 1L;
 
     private Long idColetor;
@@ -17,6 +21,15 @@ public class Coletor
     public Coletor()
     {
         this.idColetor = sequenciaColetor++;
+    }
+
+    public static Coletor addColetor(Coletor coletor) {
+        coletores.add(coletor);
+        return coletor;
+    }
+
+    public static List<Coletor> getColetor() {
+        return coletores;
     }
 
 }

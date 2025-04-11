@@ -1,7 +1,11 @@
 package br.futurodev.joinville.coleta_seletiva_spring.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Rota
 {
+    private static final List<Rota> rotas = new ArrayList<>();
     private static Long sequenciaRota = 1L;
 
     private Long idRota;
@@ -21,4 +25,14 @@ public class Rota
     {
         this.idRota = sequenciaRota++;
     }
+
+    public static Rota addRotas(Rota rota) {
+        rotas.add(rota);
+        return rota;
+    }
+
+    public static List<Rota> getRotas() {
+        return rotas;
+    }
+
 }
