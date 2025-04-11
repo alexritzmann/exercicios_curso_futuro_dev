@@ -3,9 +3,7 @@ package br.futurodev.joinville.spring.services;
 import br.futurodev.joinville.spring.dtos.MaterialRequestDto;
 import br.futurodev.joinville.spring.dtos.MaterialResponseDto;
 import br.futurodev.joinville.spring.models.Material;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
