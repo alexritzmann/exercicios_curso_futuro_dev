@@ -5,3 +5,4 @@ public record RotaRequestDto(
         String areaAbrangenciaRota,
         double eficienciaRota
 ) {}
+
