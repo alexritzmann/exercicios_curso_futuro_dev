@@ -19,10 +19,22 @@ public class ProjectServiceImpl implements ProjectService
     private final ProjectRepository repository;
     private final OrganizationRepository organizationRepository;
 
+    /*
     @Override
     public List<ProjectResponseDto> findAll()
     {
         List<Project> projects = repository.findAll();
+        return ProjectMapper.toResponseDtos(projects);
+    }
+    */
+
+    @Override
+    public List<ProjectResponseDto> findAll(String regionFilter, String organizationNameFilter)
+    {
+        String region = (regionFilter != null && !regionFilter.trim().isEmpty()) ? regionFilter : null;
+        String orgName = (organizationNameFilter != null && !organizationNameFilter.trim().isEmpty()) ? organizationNameFilter : null;
+
+        List<Project> projects = repository.findFiltered(region, orgName);
         return ProjectMapper.toResponseDtos(projects);
     }
 
@@ -63,5 +75,10 @@ public class ProjectServiceImpl implements ProjectService
     private Project findEntityById(Long id)
     {
         return repository.findById(id).orElse(null);
+    }
+
+    private String verifyFilter(String filter)
+    {
+        return (filter == null || filter.trim().isEmpty()) ? null : filter;
     }
 }

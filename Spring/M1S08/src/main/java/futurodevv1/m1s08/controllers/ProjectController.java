@@ -16,10 +16,19 @@ public class ProjectController
 {
     private final ProjectService service;
 
+    // get "antigo". O get novo já trata esse caso também além de possibilitar uso de parametros.
+    /*
     @GetMapping
     public List<ProjectResponseDto> get()
     {
         return service.findAll();
+    }
+    */
+
+    @GetMapping
+    public List<ProjectResponseDto> get(@RequestParam(required = false) String region, @RequestParam(required = false) String organizationName)
+    {
+        return service.findAll(region, organizationName);
     }
 
     @GetMapping("{id}")

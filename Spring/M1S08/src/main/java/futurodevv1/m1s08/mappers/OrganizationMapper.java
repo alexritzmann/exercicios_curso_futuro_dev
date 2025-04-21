@@ -25,17 +25,6 @@ public class OrganizationMapper
         );
     }
 
-    public static OrganizationResponseDto toDto(Organization organization) {
-        if (organization == null) {
-            return null;
-        }
-        return new OrganizationResponseDto(
-                organization.getId(),
-                organization.getName(),
-                organization.getContact()
-        );
-    }
-
     public static List<OrganizationResponseDto> toResponseDtos(List<Organization> entities)
     {
         return entities.stream().map(OrganizationMapper::toResponseDto).toList();

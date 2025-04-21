@@ -14,9 +14,8 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     @Query
     ("SELECT o FROM Organization o WHERE " +
-    "(:name IS NULL OR LOWER(o.name) LIKE '%' || LOWER(:name) || '%') AND " +
-    "(:contact IS NULL OR LOWER(o.contact) LIKE '%' || LOWER(:contact) || '%')")
+    "(CAST(:name AS string) IS NULL OR LOWER(o.name) LIKE LOWER(CONCAT('%', CAST(:name AS string), '%'))) AND " +
+    "(CAST(:contact AS string) IS NULL OR LOWER(o.contact) LIKE LOWER(CONCAT('%', CAST(:contact AS string), '%')))")
 
     List<Organization> findFiltered(@Param("name") String name, @Param("contact") String contact);
-
 }
