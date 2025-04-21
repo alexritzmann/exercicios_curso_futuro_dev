@@ -16,10 +16,19 @@ public class OrganizationController
 {
     private final OrganizationService service;
 
+    // get "antigo". O get novo já trata esse caso também além de possibilitar uso de parametros.
+    /*
     @GetMapping
     public List<OrganizationResponseDto> get()
     {
         return service.findAll();
+    }
+    */
+
+    @GetMapping
+    public List<OrganizationResponseDto> get(@RequestParam(required = false) String name, @RequestParam(required = false) String contact)
+    {
+        return service.findAll(name, contact);
     }
 
     @GetMapping("{id}")
@@ -43,7 +52,8 @@ public class OrganizationController
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@PathVariable Long id) {
+    public void deleteById(@PathVariable Long id)
+    {
         service.delete(id);
     }
 

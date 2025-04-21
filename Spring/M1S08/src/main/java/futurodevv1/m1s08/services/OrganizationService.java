@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface OrganizationService
 {
-    List<OrganizationResponseDto> findAll();
+    //List<OrganizationResponseDto> findAll();
+    List<OrganizationResponseDto> findAll(String nameFilter, String contactFilter);
     OrganizationResponseDto findById(Long id);
     OrganizationResponseDto create(OrganizationRequestDto dto);
     OrganizationResponseDto update(OrganizationRequestDto dto, Long id);

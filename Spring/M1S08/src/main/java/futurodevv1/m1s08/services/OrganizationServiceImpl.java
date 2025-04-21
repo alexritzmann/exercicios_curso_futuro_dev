@@ -16,10 +16,22 @@ public class OrganizationServiceImpl implements OrganizationService
 {
     private final OrganizationRepository repository;
 
+    /*
     @Override
     public List<OrganizationResponseDto> findAll()
     {
         List<Organization> organizations = repository.findAll();
+        return OrganizationMapper.toResponseDtos(organizations);
+    }
+    */
+
+    @Override
+    public List<OrganizationResponseDto> findAll(String name, String contact)
+    {
+        String nameFilter = (name == null || name.trim().isEmpty()) ? null : name;
+        String contactFilter = (contact == null || contact.trim().isEmpty()) ? null : contact;
+
+        List<Organization> organizations = repository.findFiltered(nameFilter, contactFilter);
         return OrganizationMapper.toResponseDtos(organizations);
     }
 
