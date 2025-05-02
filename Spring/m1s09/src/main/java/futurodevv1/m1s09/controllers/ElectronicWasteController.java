@@ -22,14 +22,6 @@ public class ElectronicWasteController
         return service.findAll();
     }
 
-    /*
-    @GetMapping
-    public List<ElectronicWasteResponseDto> get(@RequestParam(required = false) String name, @RequestParam(required = false) String contact)
-    {
-        return service.findAll(name, contact);
-    }
-    */
-
     @GetMapping("{id}")
     public ElectronicWasteResponseDto getById(@PathVariable Long id)
     {

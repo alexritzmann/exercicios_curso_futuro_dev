@@ -3,6 +3,7 @@ package futurodevv1.m1s09.services;
 import futurodevv1.m1s09.dtos.ElectronicWasteRequestDto;
 import futurodevv1.m1s09.dtos.ElectronicWasteResponseDto;
 import futurodevv1.m1s09.entities.ElectronicWaste;
+import futurodevv1.m1s09.errors.exeptions.ElectronicWasteNotFoundException;
 import futurodevv1.m1s09.mappers.ElectronicWasteMapper;
 import futurodevv1.m1s09.repositories.ElectronicWasteRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,12 @@ public class ElectronicWasteServiceImpl implements ElectronicWasteService
     }
 
     @Override
-    public ElectronicWasteResponseDto findById(Long id)
-    {
-        return repository.findById(id).map(ElectronicWasteMapper::toResponseDto).orElse(null);
+    public ElectronicWasteResponseDto findById(Long id) {
+        return repository.findById(id)
+                .map(ElectronicWasteMapper::toResponseDto)
+                .orElseThrow(() -> new ElectronicWasteNotFoundException(id));
     }
+
 
     @Override
     public ElectronicWasteResponseDto create(ElectronicWasteRequestDto dto)

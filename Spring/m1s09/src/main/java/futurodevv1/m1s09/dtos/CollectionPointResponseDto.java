@@ -5,7 +5,7 @@ import java.util.List;
 public record CollectionPointResponseDto(
         Long id,
         String name,
-        String adress,
+        String address,
         String collectionDay,
         List<CollectionPointMaterialResponseDto> materialList
 ) {
