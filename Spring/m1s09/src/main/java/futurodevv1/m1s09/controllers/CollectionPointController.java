@@ -5,6 +5,7 @@ import futurodevv1.m1s09.dtos.CollectionPointResponseDto;
 import futurodevv1.m1s09.services.CollectionPointService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,6 +27,12 @@ public class CollectionPointController
     public CollectionPointResponseDto getById(@PathVariable Long id)
     {
         return service.findById(id);
+    }
+
+    @GetMapping("/electronic-waste/name/{name}")
+    public ResponseEntity<List<CollectionPointResponseDto>> getByElectronicWasteName(@PathVariable String name)
+    {
+        return ResponseEntity.ok(service.findByElectronicWasteName(name));
     }
 
     @PostMapping

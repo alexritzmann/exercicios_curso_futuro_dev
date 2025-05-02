@@ -6,6 +6,7 @@ import futurodevv1.m1s09.entities.CollectionPoint;
 import futurodevv1.m1s09.entities.CollectionPointMaterial;
 import futurodevv1.m1s09.entities.ElectronicWaste;
 import futurodevv1.m1s09.errors.exeptions.CollectionPointNotFoundException;
+import futurodevv1.m1s09.errors.exeptions.ElectronicWasteNotFoundException;
 import futurodevv1.m1s09.mappers.CollectionPointMapper;
 import futurodevv1.m1s09.repositories.CollectionPointMaterialRepository;
 import futurodevv1.m1s09.repositories.CollectionPointRepository;
@@ -77,6 +78,15 @@ public class CollectionPointServiceImpl implements CollectionPointService
     public void delete(Long id)
     {
         repository.deleteById(id);
+    }
+
+    public List<CollectionPointResponseDto> findByElectronicWasteName(String name)
+    {
+        List<CollectionPoint> points = repository.findByElectronicWasteNameContaining(name);
+        if (points.isEmpty()) {
+            throw new ElectronicWasteNotFoundException("Nenhum ponto encontrado para: " + name);
+        }
+        return CollectionPointMapper.toResponseDtos(points);
     }
 
     private CollectionPoint findEntityById(Long id)

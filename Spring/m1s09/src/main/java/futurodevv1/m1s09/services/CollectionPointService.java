@@ -12,4 +12,7 @@ public interface CollectionPointService
     CollectionPointResponseDto create(CollectionPointRequestDto dto);
     CollectionPointResponseDto update(CollectionPointRequestDto dto, Long id);
     void delete(Long id);
+
+    List<CollectionPointResponseDto> findByElectronicWasteName(String name);
+
 }
