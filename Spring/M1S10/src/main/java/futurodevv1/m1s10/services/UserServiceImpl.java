@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = repository.findByUsername(username);
         if (user.isPresent()) {
+            System.out.println("Papel do usuário: " + user.get().getRole());
             return user.get();
         }
 
