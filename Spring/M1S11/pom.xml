@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>FuturoDevV1</groupId>
-    <artifactId>M1S10</artifactId>
+    <artifactId>M1S11</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>M1S10</name>
     <description>M1S10</description>
