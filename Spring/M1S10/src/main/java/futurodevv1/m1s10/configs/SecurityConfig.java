@@ -4,6 +4,7 @@ import futurodevv1.m1s10.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -32,18 +33,19 @@ public class SecurityConfig
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
-    {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/organizations").hasAnyAuthority(
+                                "ADMIN", "USER"
+                        )
+                        .requestMatchers("/organizations", "/users").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
-                )
-                .userDetailsService(userService)
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(AbstractHttpConfigurer::disable);
-
+                );
         return http.build();
     }
 
