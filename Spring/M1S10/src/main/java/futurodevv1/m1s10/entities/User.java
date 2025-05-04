@@ -2,15 +2,22 @@ package futurodevv1.m1s10.entities;
 
 import futurodevv1.m1s10.enums.UserRole;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
+
+
+@Builder
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User
+public class User implements UserDetails
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +37,33 @@ public class User
     @Column(nullable = false)
     private UserRole role;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return List.of(()->role.name());
+    }
+
+    @Override
+    public boolean isAccountNonExpired()
+    {
+        return isEnabled();
+    }
+
+    @Override
+    public boolean isAccountNonLocked()
+    {
+        return isEnabled();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired()
+    {
+        return isEnabled();
+    }
+
+    @Override
+    public boolean isEnabled()
+    {
+        return true;
+    }
 }

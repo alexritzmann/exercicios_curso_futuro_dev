@@ -11,7 +11,6 @@ import lombok.Getter;
 @Table(name = "organizations")
 public class Organization
 {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
@@ -22,6 +21,5 @@ public class Organization
 
     @Column(nullable = false, length = 100)
     private String contact;
-
 
 }
